@@ -7,10 +7,27 @@ const StakingRewards = artifacts.require('stakingRewards')
 // THis is an async function, it will accept the Deployer account, the network, and eventual accounts.
 module.exports = async function (deployer, network, accounts) {
   // // await while we deploy the DevToken
-  // await deployer.deploy(StakingToken, 'Stake', 'steak', '90000000000000000000000')
-  // await deployer.deploy(RewardsToken, 'Rewards', 'rews', '1000000000000000000')
-  await deployer.deploy(StakingRewards, '0xBe186F245Dda151D0d2CFd6E2AF47434361e200b', '0xF2bCaD067D11d802768CD7c07C53624Fc0986246')
+
+  let add1
+  let add2
+  let add3
+  // Deploy staking token
+  await deployer.deploy(StakingToken, 'Stake', 'steak', '90000000000000000000000').then(res => {
+    console.log('res 1', res.address)
+    add1 = res.address
+  })
+  // Deploy rewards token
+  await deployer.deploy(RewardsToken, 'Rewards', 'rews', '1000000000000000000').then(res => {
+    console.log('res 2', res.address)
+
+    add2 = res.address
+  })
+  // Deploy staking rewards contract that takes both tokens as args
+  await deployer.deploy(StakingRewards, add1, add2).then(res => {
+    add3 = res.address
+  })
   // const stakingToken = await StakingToken.deployed()
   // const rewardsToken = await RewardsToken.deployed()
-  const sR = await StakingRewards.deployed()
+  // const sR = await StakingRewards.deployed()
+  console.log('add1:StakingToken', add1, 'add2:RewardsToken', add2, 'add3:StakingRewards', add3)
 }
