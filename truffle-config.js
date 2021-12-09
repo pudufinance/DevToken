@@ -13,7 +13,7 @@ module.exports = {
       // added FTM TESTNET HERE
       provider: () => new HDWalletProvider(mnemonic, `https://rpc.testnet.fantom.network`, 0, 9),
       network_id: 4002,
-      confirmations: 3,
+      confirmations: 0,
       // timeoutBlocks: 200,
       skipDryRun: true,
       from: '0x4390928e2F6aE6a9E3FB6476FB5cfbEC09e813FD'

@@ -45,9 +45,11 @@ contract StakingRewards {
         _;
     }
 
-    function stake(uint _amount) external updateReward(msg.sender) {
+    function stake(uint _amount) external payable updateReward(msg.sender) {
+    // function stake(uint _amount) external updateReward(msg.sender) {
         _totalSupply += _amount;
         _balances[msg.sender] += _amount;
+      // tranfer staking token    *invoker* to *this contract*
         stakingToken.transferFrom(msg.sender, address(this), _amount);
     }
 
