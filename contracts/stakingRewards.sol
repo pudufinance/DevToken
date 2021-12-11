@@ -51,7 +51,6 @@ contract StakingRewards {
     modifier updateReward(address account) {
         rewardPerTokenStored = rewardPerToken();
         lastUpdateTime = block.timestamp;
-        // emit Earned(account, earned(account));
         rewards[account] = earned(account);
         userRewardPerTokenPaid[account] = rewardPerTokenStored;
         _;
@@ -68,13 +67,9 @@ contract StakingRewards {
     // WITHDRAW STAKE
     function withdraw(uint _amount) external updateReward(msg.sender) {
         _totalSupply -= _amount;
-        // if (_amount == _balances[msg.sender]) {
-          _balances[msg.sender] = 0;
-        // } else {
-        // _balances[msg.sender] -= _amount;
-        // }
-        emit WithDraw(_balances[msg.sender]);
+        _balances[msg.sender] -= _amount;
         stakingToken.transfer(msg.sender, _amount);
+        emit WithDraw(_balances[msg.sender]);
     }
 
     // GET REWARD //
