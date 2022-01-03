@@ -2,7 +2,7 @@
 // Make sure the DevToken contract is included by requireing it.
 const StakingToken = artifacts.require('StakingToken')
 const RewardsToken = artifacts.require('RewardsToken')
-const StakingRewards = artifacts.require('stakingRewards')
+const StakingRewards = artifacts.require('StakingRewards')
 const Reserve = artifacts.require('Reserve')
 
 // THis is an async function, it will accept the Deployer account, the network, and eventual accounts.

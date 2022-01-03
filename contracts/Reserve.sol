@@ -4,7 +4,7 @@ pragma solidity ^0.8;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract Reserve is ERC20 {
+contract Reserve {
     using SafeMath for uint256;
     IERC20 public rewardsToken;
     IERC20 public stakingToken;

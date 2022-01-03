@@ -10,7 +10,7 @@ contract StakingRewards {
     IERC20 public stakingToken;
 
     // added higher reward rate uint public rewardRate = 100;
-    uint public rewardRate = 100000000000000000;
+    uint public rewardRate = 1000000000000000;
     uint public lastUpdateTime;
     uint public rewardPerTokenStored;
 
