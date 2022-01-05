@@ -10,7 +10,7 @@ contract StakingRewards {
     IERC20 public stakingToken;
 
     // added higher reward rate uint public rewardRate = 100;
-    uint public rewardRate = 1000000000000000;
+    uint public rewardRate = 10000000000000000;
     uint public lastUpdateTime;
     uint public rewardPerTokenStored;
 
@@ -72,6 +72,11 @@ contract StakingRewards {
         emit WithDraw(_balances[msg.sender]);
     }
 
+    function updateRewardRate (uint _amount) external {
+        // make this an owner only func
+        rewardRate = _amount;
+    }
+
     // GET REWARD //
     function getReward() external updateReward(msg.sender) {
       uint reward = rewards[msg.sender];
@@ -80,6 +85,12 @@ contract StakingRewards {
             rewards[msg.sender] = 0;
             rewardsToken.transfer(msg.sender, reward);
         }
+    }
+
+        // added: need a function that returns total staked balance _balances (simple)
+    function getRewardRate() public view returns (uint) {
+        return 
+          rewardRate;
     }
 
     // added: need a function that returns total staked balance _balances (simple)

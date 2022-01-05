@@ -14,12 +14,12 @@ module.exports = async function (deployer, network, accounts) {
   let add3
   let add4
   // Deploy staking token
-  await deployer.deploy(StakingToken, 'Stake', 'steak', '900000000000000000000000').then(res => {
+  await deployer.deploy(StakingToken, 'Stake', 'steak', '1000000000000000000000000').then(res => {
     console.log('res 1', res.address)
     add1 = res.address
   })
   // Deploy rewards token
-  await deployer.deploy(RewardsToken, 'Rewards', 'rews', '900000000000000000000000').then(res => {
+  await deployer.deploy(RewardsToken, 'Rewards', 'rews', '1000000000000000000000000').then(res => {
     console.log('res 2', res.address)
 
     add2 = res.address
